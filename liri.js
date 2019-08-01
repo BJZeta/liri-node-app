@@ -3,6 +3,7 @@ require("dotenv").config();
 var keys = require('./keys');
 var axios = require('axios');
 var Spotify = require('node-spotify-api')
+var fs = require('fs');
 
 var spotify = new Spotify(keys.spotify);
 
@@ -12,14 +13,14 @@ var search_term = process.argv.slice(3).join(" ");
 
 
 
-if (input === "concert-this") {
-    var concertURL = "https://rest.bandsintown.com/artists/" + search_term + "/events?app_id=codingbootcamp"
-    axios.get(concertURL).
-        then(function (response) {
-            var band_in_town = response.data;
-            console.log(band_in_town);
-        })
-} else if (input === "spotify-this") {
+// if (input === "concert-this") {
+//     var concertURL = "https://rest.bandsintown.com/artists/" + search_term + "/events?app_id=codingbootcamp"
+//     axios.get(concertURL).
+//         then(function (response) {
+//             var band_in_town = response.data;
+//             console.log(band_in_town);
+//         })
+if (input === "spotify-this") {
     spotify.search({ type: 'track', query: search_term })
         .then(function (response) {
             var track = response.tracks.items[0]
@@ -35,7 +36,15 @@ if (input === "concert-this") {
         })
 
 } else if (input === "movie-this") {
-
+    var movieURL = 'https://www.omdbapi.com/?t=' + search_term + '&apikey=trilogy';
+    axios.get('https://www.omdbapi.com/?t=' + search_term + '&apikey=trilogy').
+    then(function (response) {
+        data = response.data;
+        console.log(data)
+        
+    }).catch(function (err) {
+        console.log(err)
+    })
 } else if (input === "do-what-it-says") {
 
 }
