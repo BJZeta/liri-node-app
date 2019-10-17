@@ -11,3 +11,5 @@ This app allows a user to search song info on a song name, venue information on 
   
 ## To search for movie info....
   ### Type in 'movie-this (movie title)'
+
+  A link to how the app functions can be found right [here](https://youtu.be/sIYLLI6Km2M) 
